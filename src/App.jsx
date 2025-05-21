@@ -8,7 +8,7 @@ export const App = () => {
 	return (
 		<Div>
 			<div>123</div>
-			<i className="fa fa-camera-retro"></i>
+			<i className="fa fa-camera-retro fa-2x"></i>
 		</Div>
 	);
 };
