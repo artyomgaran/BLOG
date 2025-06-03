@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
-const IconContainer = ({ className, id }) => (
-	<div className={className}>
+const IconContainer = ({ className, id, ...props }) => (
+	<div className={className} {...props}>
 		<i className={`fa ${id}`} aria-hidden="true"></i>
 	</div>
 );
