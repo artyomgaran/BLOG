@@ -20,6 +20,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
 		dispatch(addCommentAsync(requestServer, userId, postId, content));
 		setNewComment('');
 	};
+	console.log(comments);
 
 	return (
 		<div className={className}>

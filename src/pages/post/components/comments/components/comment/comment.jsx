@@ -9,6 +9,7 @@ import styled from 'styled-components';
 const CommentContainer = ({ className, postId, id, author, publishedAt, content }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
+	console.log('CommentContainer', author, postId);
 
 	const onCommentRemove = (id) => {
 		dispatch(
