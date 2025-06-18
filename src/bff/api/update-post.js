@@ -5,7 +5,7 @@ export const updatePost = ({ id, imageUrl, tittle, content }) =>
 			'Content-Type': 'application/json;charset=utf-8',
 		},
 		body: JSON.stringify({
-			image_url: imageUrl,
+			img_url: imageUrl,
 			tittle,
 			content,
 		}),

@@ -27,6 +27,7 @@ const ControlPanelContainer = ({ className }) => {
 	const roleId = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
+
 	const onLogout = () => {
 		dispatch(logout(session));
 		sessionStorage.removeItem('userData');
