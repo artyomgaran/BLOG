@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useLayoutEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { SpecialPanel } from '../special-panel/special-panel';
 import { sanitizeContent } from './utils/sanitize-content';
 
 import styled from 'styled-components';
+import { PROP_TYPE } from '../../../../constans';
 const PostFormContainer = ({
 	className,
 	post: { id, tittle, imageUrl, content, publishedAt },
@@ -93,3 +93,7 @@ export const PostForm = styled(PostFormContainer)`
 		white-space: pre-line;
 	}
 `;
+
+PostForm.propTypes = {
+	post: PROP_TYPE.POST.isRequired,
+};

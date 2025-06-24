@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+// eslint-disable-next-line react/prop-types
 const FooterContainer = ({ className }) => {
 	const [city, setCity] = useState('');
 	const [temperature, setTemperature] = useState('');

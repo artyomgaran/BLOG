@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import { H2 } from '../h2/h2';
+import { PROP_TYPE } from '../../constans';
 
 const Div = styled.div`
 	display: flex;
@@ -16,3 +16,7 @@ export const Error = ({ error }) =>
 			<div>{error}</div>
 		</Div>
 	);
+
+Error.propTypes = {
+	error: PROP_TYPE.ERROR,
+};

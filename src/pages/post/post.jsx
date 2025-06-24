@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams, useMatch } from 'react-router-dom';
 import { Comments, PostContent, PostForm } from './components';

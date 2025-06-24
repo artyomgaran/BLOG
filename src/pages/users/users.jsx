@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { H2, PrivateContent } from '../../components';
 import { UserRow, TableRow } from './components';
 import { useServerRequest } from '../../hooks';

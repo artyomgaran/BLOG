@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon } from '../../../../components';
@@ -7,7 +7,7 @@ import { selectUserId, selectUserRole } from '../../../../selectors';
 import { addCommentAsync } from '../../../../action';
 ('../../../../action');
 import { useServerRequest } from '../../../../hooks';
-import { ROLE } from '../../../../constans';
+import { PROP_TYPE, ROLE } from '../../../../constans';
 
 import styled from 'styled-components';
 
@@ -75,3 +75,8 @@ export const Comments = styled(CommentsContainer)`
 		resize: none;
 	}
 `;
+
+Comments.propTypes = {
+	comments: PropTypes.arrayOf(PROP_TYPE.COMMENT).isRequired,
+	postId: PropTypes.string.isRequired,
+};
