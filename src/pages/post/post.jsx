@@ -1,17 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams, useMatch } from 'react-router-dom';
 import { Comments, PostContent, PostForm } from './components';
+import { Error, PrivateContent } from '../../components';
 import { useServerRequest } from '../../hooks';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadPostAsync, RESET_POST_DATA } from '../../action';
 import { selectPost } from '../../selectors';
+import { ROLE } from '../../constans';
 
 import styled from 'styled-components';
 
 const PostContainer = ({ className }) => {
+	const [error, setError] = useState(null);
 	const dispatch = useDispatch();
 	const params = useParams();
+	const [isLoading, setIsLoading] = useState(true);
 	const isCreating = useMatch('/post');
 	const isEditing = useMatch('/post/:id/edit');
 	const requestServer = useServerRequest();
@@ -23,26 +27,35 @@ const PostContainer = ({ className }) => {
 
 	useEffect(() => {
 		if (isCreating) {
+			setIsLoading(false);
 			return;
 		}
 
-		dispatch(loadPostAsync(requestServer, params.id));
+		dispatch(loadPostAsync(requestServer, params.id)).then((postData) => {
+			setError(postData.error);
+			setIsLoading(false);
+		});
 	}, [requestServer, dispatch, params.id, isCreating]);
 
-	return (
-		<div className={className}>
-			{isCreating || isEditing ? (
-				<PostForm post={post} />
-			) : (
-				<>
-					<PostContent post={post} />
-					<Comments comments={post.comments} postId={post.id} />
-				</>
-			)}
+	if (isLoading) {
+		return null;
+	}
 
-			<div></div>
-		</div>
-	);
+	const SpecificPostPage =
+		isCreating || isEditing ? (
+			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
+				<div className={className}>
+					<PostForm post={post} />
+				</div>
+			</PrivateContent>
+		) : (
+			<div className={className}>
+				<PostContent post={post} />
+				<Comments comments={post.comments} postId={post.id} />
+			</div>
+		);
+
+	return error ? <Error error={error} /> : SpecificPostPage;
 };
 
 export const Post = styled(PostContainer)`
