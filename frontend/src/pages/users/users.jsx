@@ -30,17 +30,8 @@ const UsersContainer = ({ className }) => {
 			}
 		);
 	}, [userRole, shouldUpdateUserList]);
-<<<<<<< HEAD
-
-	console.log('users', users);
 
 	const onUserRemove = (userId) => {
-		console.log('userId', userId);
-
-=======
-
-	const onUserRemove = (userId) => {
->>>>>>> blog-back+front
 		if (!checkAccess([ROLE.ADMIN], userRole)) {
 			setErrorMessage('У вас нет прав для удаления пользователей');
 			return;
